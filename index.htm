@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Plugin hello world</title>
+</head>
+<body>
+
+<h1>jQuery plugin template</h1>
+<p>
+	Example of a jQuery plugin with internal function call.
+</p>
+
+<p><button id="say-bye">sayCustomMessage('Bye all!')</button></p>
+<p><button id="say-bye-1">sayCustomMessage('Bye instance 1!')</button></p>
+<p><button id="say-bye-2">sayCustomMessage('Bye instance 2!')</button></p>
+
+<h1>Instance 1</h1>
+<div id="instance1" class="hello-world"></div>
+
+
+<h1>Instance 2</h1>
+<div id="instance2" class="hello-world"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="jquery.helloworld.js"></script>
+
+<script>
+	$(function(){
+		var $helloPlugin = $('.hello-world').hello(),
+			$hello1 = $('#instance1'),
+			$hello2 = $('#instance2');
+
+		$('#say-bye').on('click', function(e){
+			// call plugin function on ALL instances
+			$helloPlugin.hello('sayCustomMessage', 'Bye all!');
+		});
+
+		$('#say-bye-1').on('click', function(e){
+			// call plugin function publicly available
+			$hello1.hello('sayCustomMessage', 'Bye instance 1!');
+		});
+
+		$('#say-bye-2').on('click', function(e){
+			// call plugin function publicly available
+			$hello2.hello('sayCustomMessage', 'Bye instance 2!');
+		});
+	});
+</script>
+</body>
+</html>
